@@ -5,15 +5,7 @@
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### login information
+admin role: email: will@smith.com , password: will smith
+employee role: email: toni@hamilton.com , password: toni hamilton
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
