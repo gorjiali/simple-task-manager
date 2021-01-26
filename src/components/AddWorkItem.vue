@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 export default {
   data() {
     return {
@@ -24,6 +25,7 @@ export default {
     add() {
         if (this.newWorkItem.title === '') return alert('عنوان تسک را وارد کنید!');
         this.$store.dispatch('addNewWorkItem', this.newWorkItem);
+        Vue.set(this.newWorkItem, 'title', '')
     },
   },
 };
