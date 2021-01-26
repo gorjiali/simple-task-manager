@@ -1,6 +1,11 @@
 <template>
-  <div class="container">
-    <span>{{ typesList.find(item => item.enName === type).faName }}</span>
+  <div
+    class="container drop-zone"
+    @drop="onDrop($event, type)"
+    @dragover.prevent
+    @dragenter.prevent
+  >
+    <span>{{ typesList.find((item) => item.enName === type).faName }}</span>
     <div class="list">
       <WorkItem
         v-for="item in items"
@@ -32,6 +37,13 @@ export default {
 
   components: {
     WorkItem,
+  },
+
+  methods: {
+    onDrop(evt, listType) {
+      const item = evt.dataTransfer.getData("item");
+      this.$store.dispatch("changeWorkItemState", { ...JSON.parse(item), state: listType});
+    },
   },
 
   computed: {

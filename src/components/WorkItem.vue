@@ -1,6 +1,5 @@
 <template>
-<!-- <transition name=""> -->
-  <div class="work-item">
+  <div class="work-item drag-el" draggable @dragstart="startDrag($event, workItem)">
     <span>{{ workItem.title }}</span>
     <select
       name="workItemState"
@@ -15,7 +14,6 @@
 
     <button @click.prevent="remove()">حذف</button>
   </div>
-<!-- </transition> -->
 </template>
 
 <script>
@@ -35,8 +33,13 @@ export default {
       this.$store.dispatch("changeWorkItemState", this.workItem);
     },
     remove() {
-        this.$store.dispatch("deleteWorkItem", this.workItem.id);
-    }
+      this.$store.dispatch("deleteWorkItem", this.workItem.id);
+    },
+    startDrag(evt, workItem) {
+      evt.dataTransfer.dropEffect = "move";
+      evt.dataTransfer.effectAllowed = "move";
+      evt.dataTransfer.setData("item", JSON.stringify(workItem));
+    },
   },
 };
 </script>
@@ -72,5 +75,4 @@ export default {
   border: 1px solid gray;
   border-radius: 3px;
 }
-
 </style>
