@@ -1,10 +1,13 @@
 <template>
-  <div class="list">
-    <WorkItem
-      v-for="item in items"
-      :key="item.title + Math.random()"
-      :item="item"
-    />
+  <div class="container">
+    <span>{{ typesList.find(item => item.enName === type).faName }}</span>
+    <div class="list">
+      <WorkItem
+        v-for="item in items"
+        :key="item.title + Math.random()"
+        :item="item"
+      />
+    </div>
   </div>
 </template>
 
@@ -14,6 +17,17 @@ import WorkItem from "@/components/WorkItem";
 export default {
   props: {
     type: String,
+  },
+
+  data() {
+    return {
+      typesList: [
+        { enName: "new", faName: "جدید" },
+        { enName: "active", faName: "فعال" },
+        { enName: "pendedReview", faName: "در انتظار بررسی" },
+        { enName: "resolved", faName: "بسته شده" },
+      ],
+    };
   },
 
   components: {
@@ -31,11 +45,27 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: white;
+  margin: 0 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: calc(100vh - 100px);
+}
+.container span {
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  font-size: 17px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 .list {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
   padding: 5px;
-  background-color: #e6e4e4;
   display: flex;
   flex-direction: column;
 }
