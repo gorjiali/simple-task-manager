@@ -6,12 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    workItems: [
-      { id: uuidv4(), title: 'طراحی صفحه ورود', state: 'new' },
-      { id: uuidv4(), title: 'رفع باگ', state: 'active' },
-      { id: uuidv4(), title: 'اصلاح استراکچر', state: 'pendedReview' },
-      { id: uuidv4(), title: 'کانفیگ سرور', state: 'resolved' }
-    ]
+    workItems: []
   },
 
   mutations: {
